@@ -66,3 +66,17 @@ def test_not_str_name_should_return_TypeError():
         Category(2, '1')
     except Exception as e:
         assert isinstance(e, TypeError)
+
+
+def test_len_less_200():
+    try:
+        Category('a' * 300, '1')
+    except Exception as e:
+        assert isinstance(e, ValueError)
+
+
+def test_len_less_400():
+    try:
+        Category('a', 'b' * 600)
+    except Exception as e:
+        assert isinstance(e, ValueError)
