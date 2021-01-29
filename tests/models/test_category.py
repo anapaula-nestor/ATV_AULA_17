@@ -43,6 +43,7 @@ def test_has_attribute():
 def test_none_name_should_return_valueError():
     try:
         Category(None, 'desc')
+        raise NotImplementedError("Error not defined")
     except Exception as e:
         assert isinstance(e, ValueError)
 
@@ -50,6 +51,7 @@ def test_none_name_should_return_valueError():
 def test_none_description_should_return_valueError():
     try:
         Category('name', None)
+        raise NotImplementedError("Error not defined")
     except Exception as e:
         assert isinstance(e, ValueError)
 
@@ -57,6 +59,7 @@ def test_none_description_should_return_valueError():
 def test_not_str_description_should_return_TypeError():
     try:
         Category('name', 1)
+        raise NotImplementedError("Error not defined")
     except Exception as e:
         assert isinstance(e, TypeError)
 
@@ -64,6 +67,7 @@ def test_not_str_description_should_return_TypeError():
 def test_not_str_name_should_return_TypeError():
     try:
         Category(2, '1')
+        raise NotImplementedError("Error not defined")
     except Exception as e:
         assert isinstance(e, TypeError)
 
@@ -71,6 +75,7 @@ def test_not_str_name_should_return_TypeError():
 def test_len_less_200():
     try:
         Category('a' * 300, '1')
+        raise NotImplementedError("Error not defined")
     except Exception as e:
         assert isinstance(e, ValueError)
 
@@ -78,5 +83,6 @@ def test_len_less_200():
 def test_len_less_400():
     try:
         Category('a', 'b' * 600)
+        raise NotImplementedError("Error not defined")
     except Exception as e:
         assert isinstance(e, ValueError)
