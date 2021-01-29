@@ -14,9 +14,7 @@ class Category(BaseModel):
 
     @validates('name')
     def validate_name(self, key, name):
-        if name is None:
-            raise ValueError("Name can't be empty!")
-        elif not isinstance(name, str):
+        if not isinstance(name, str):
             raise TypeError("Name must be string")
         elif not name.strip():
             raise ValueError("Name can't be empty!")
@@ -26,9 +24,7 @@ class Category(BaseModel):
 
     @validates('description')
     def validate_description(self, key, description):
-        if description is None:
-            raise ValueError("Name can't be empty!")
-        elif not isinstance(description, str):
+        if not isinstance(description, str):
             raise TypeError("Description must be string")
         if not description.strip():
             raise ValueError("Description can't be empty!")
