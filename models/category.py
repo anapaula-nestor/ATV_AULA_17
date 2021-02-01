@@ -31,4 +31,3 @@ class Category(BaseModel):
         elif len(description) > 400:
             raise ValueError("Description must contains less than 400 characters!")
         return description
-
