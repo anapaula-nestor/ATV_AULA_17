@@ -6,46 +6,52 @@ from models.category import Category
 import pytest
 
 
-def test_category_instance():
+@pytest.mark.parametrize("name, description", [
+    ("Valid name", 'Valid description'),
+    ("name" * 10, 'Description' * 5),
+    ("Valid name", '')
+])
+def test_category_instance(name, description):
     name = 'Valid Name'
     description = 'Valid description'
     category = Category(name, description)
     assert isinstance(category, Category)
 
 
-def test_compare_column_model():
-    name = 'Category'
-    description = 'Description'
+@pytest.mark.parametrize("name, description", [
+    ("Valid name", 'Valid description'),
+    ("name" * 10, 'Description' * 5),
+    ("Valid name", '')
+])
+def test_compare_column_model(name, description):
     category = Category(name, description)
     assert category.name == name
     assert category.description == description
 
 
-def test_category_name_str():
+@pytest.mark.parametrize("name, description", [
+    (1, 'Valid description'),
+    ("name" * 10, 5),
+    ("Valid name", None)
+])
+def test_category_args_str(name, description):
     with pytest.raises(TypeError):
-        category = Category(1, 'Valid description')
+        category = Category(name, description)
 
 
-def test_category_name_min_len():
+@pytest.mark.parametrize("name, description", [
+    ('Valid name' * 100, 'Valid description'),
+    ("Valid name", 'Valid_description' * 100),
+])
+def test_category_args_max_len(name, description):
     with pytest.raises(ValueError):
-        category = Category('', 'Valid description')
+        category = Category(name, description)
 
 
-def test_category_name_max_len():
+@pytest.mark.parametrize("name, description", [
+    ('', 'Valid description'),
+    ("    " * 10, 'Valid_description'),
+])
+def test_category_name_min_len(name, description):
     with pytest.raises(ValueError):
-        category = Category('nome' * 100, 'Valid description')
-
-
-def test_category_description_str():
-    with pytest.raises(TypeError):
-        category = Category('Valid name', None)
-
-
-def test_category_description_min_len():
-    with pytest.raises(ValueError):
-        category = Category('Valid name', '')
-
-
-def test_category_description_max_len():
-    with pytest.raises(ValueError):
-        category = Category('Valid name', 'description'*100)
+        category = Category(name, description)

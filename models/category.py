@@ -26,8 +26,6 @@ class Category(BaseModel):
     def validate_description(self, key, description):
         if not isinstance(description, str):
             raise TypeError("Description must be string")
-        if not description.strip():
-            raise ValueError("Description can't be empty!")
         elif len(description) > 400:
             raise ValueError("Description must contains less than 400 characters!")
         return description
