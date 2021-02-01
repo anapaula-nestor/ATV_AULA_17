@@ -12,8 +12,6 @@ import pytest
     ("Valid name", '')
 ])
 def test_category_instance(name, description):
-    name = 'Valid Name'
-    description = 'Valid description'
     category = Category(name, description)
     assert isinstance(category, Category)
 
@@ -42,16 +40,9 @@ def test_category_args_str(name, description):
 @pytest.mark.parametrize("name, description", [
     ('Valid name' * 100, 'Valid description'),
     ("Valid name", 'Valid_description' * 100),
+    ('', 'valid description'),
+    ("    ", 'valid description')
 ])
-def test_category_args_max_len(name, description):
-    with pytest.raises(ValueError):
-        category = Category(name, description)
-
-
-@pytest.mark.parametrize("name, description", [
-    ('', 'Valid description'),
-    ("    " * 10, 'Valid_description'),
-])
-def test_category_name_min_len(name, description):
+def test_category_args_len(name, description):
     with pytest.raises(ValueError):
         category = Category(name, description)
