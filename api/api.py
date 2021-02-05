@@ -10,9 +10,4 @@ api.add_resource(CategoryResource, '/api/category/<int:id>', endpoint='categorie
 
 
 
-@app.route('/')
-def home():
-    return 'Teste!'
-
-
 app.run(debug=True)
